@@ -6,39 +6,51 @@ using namespace std;
 const char OP[]="U1.txt";
 const char CL[]="U1rez.txt";
 
-void MushCount(int Mush1,int Mush2,int Mush3, int TempDay,int BigHaul);
+int MushCount(int[],int[],int[],int[]);
 
 int main()
 {
     ifstream op(OP);
     ofstream cl(CL);
 
-    int TotDays;
-    int Mush1,Mush2,Mush3;
-    int BigHaul;
-    int TempDay;
-
     op >> TotDays;
+    int days[31]={0},mush1[31]={0},mush2[31]={0},mush3[31]={0};
 
-    for(int i=0; i<TotDays; i++)
+    int maxHaul=0;
+    int dayTemp,mush1Temp,mush2Temp,mush3Temp;
+    for(int i=1; i<=TotDays; i++)
     {
-        op >> TempDay >> Mush1 >> Mush2 >> Mush3;
-        MushCount(Mush1,Mush2,Mush3,TempDay,BigHaul);
-
+        op>>dayTemp>>mush1Temp>>mush2Temp>>mush3Temp;
+        days[dayTemp-1]=dayTemp;
+        
+        mush1[dayTemp-1]+=mush1Temp;
+        mush2[dayTemp-1]+=mush2Temp;
+        mush3[dayTemp-1]+=mush3Temp;
+        
+        if((mush1Temp+mush2Temp+mush3Temp)>maxHaul)
+        {
+            maxHaul=mush1Temp+mush2Temp+mush3Temp;
+        }
     }
 
-    cout<<BigHaul;
+    //cout<<BigHaul;
 }
 
 
-void MushCount(int Mush1,int Mush2,int Mush3, int TempDay, int BigHaul)
+int MushCount(int days[],int mush1[],int mush2[],int mush3[])
 {
-    int TotHaul=0;
+    int BigHaul=0;
     int SaveDay;
+    int temp=0;
 
-    if((Mush1+Mush2+Mush3)>TotHaul)
+    for(int i=0;i<31;i++)
     {
-        BigHaul=Mush1+Mush2+Mush3;
+        temp=mush1[i]+mush2[i]+mush3[i];
+        if(temp>BigHaul)
+        {
+            BigHaul=temp;
+            SaveDay=i;
+        }
     }
-
+    return SaveDay;
 }
