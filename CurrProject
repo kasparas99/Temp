@@ -1,0 +1,44 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+const char OP[]="U1.txt";
+const char CL[]="U1rez.txt";
+
+void MushCount(int Mush1,int Mush2,int Mush3, int TempDay,int BigHaul);
+
+int main()
+{
+    ifstream op(OP);
+    ofstream cl(CL);
+
+    int TotDays;
+    int Mush1,Mush2,Mush3;
+    int BigHaul;
+    int TempDay;
+
+    op >> TotDays;
+
+    for(int i=0; i<TotDays; i++)
+    {
+        op >> TempDay >> Mush1 >> Mush2 >> Mush3;
+        MushCount(Mush1,Mush2,Mush3,TempDay,BigHaul);
+
+    }
+
+    cout<<BigHaul;
+}
+
+
+void MushCount(int Mush1,int Mush2,int Mush3, int TempDay, int BigHaul)
+{
+    int TotHaul=0;
+    int SaveDay;
+
+    if((Mush1+Mush2+Mush3)>TotHaul)
+    {
+        BigHaul=Mush1+Mush2+Mush3;
+    }
+
+}
