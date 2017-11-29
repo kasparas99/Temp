@@ -6,7 +6,7 @@ using namespace std;
 const char OP[]="U1.txt";
 const char CL[]="U1rez.txt";
 
-void MushCount(int Mush1,int Mush2,int Mush3, int TempDay,int BigHaul);
+int MushCount(int[],int[],int[],int[]);
 
 int main()
 {
