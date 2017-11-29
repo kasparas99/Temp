@@ -7,11 +7,11 @@ const char OP[]="U1.txt";
 const char CL[]="U1rez.txt";
 
 int MushCount(int[],int[],int[],int[]);
+void fileWrite(int[],int[],int[],int[],int);
 
 int main()
 {
     ifstream op(OP);
-    ofstream cl(CL);
 
     op >> TotDays;
     int days[31]={0},mush1[31]={0},mush2[31]={0},mush3[31]={0};
@@ -32,7 +32,9 @@ int main()
             maxHaul=mush1Temp+mush2Temp+mush3Temp;
         }
     }
-
+    op.close();
+    
+    fileWrite(days,mush1,mush2,mush3,maxHaul);
     //cout<<BigHaul;
 }
 
@@ -53,4 +55,18 @@ int MushCount(int days[],int mush1[],int mush2[],int mush3[])
         }
     }
     return SaveDay;
+}
+
+void fileWrite(int days[],int mush1[],int mush2[],int mush3[],int maxHaul)
+{
+    ofstream cl(CL);
+    for(int i=0;i<31;i++)
+    {
+        if(days[i]!=0)
+        {
+            cl<<days[i]<<' '<<mush1[i]<<' '<<mush2[i]<<' '<<mush3[i]<<'\n'
+        }
+    }
+    cl<<MushCount(days,mush1,mush2,mush3)<<' '<<maxHaul;
+    cl.close();
 }
