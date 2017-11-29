@@ -26,10 +26,15 @@ int main()
         mush1[dayTemp-1]+=mush1Temp;
         mush2[dayTemp-1]+=mush2Temp;
         mush3[dayTemp-1]+=mush3Temp;
-        
-        if((mush1Temp+mush2Temp+mush3Temp)>maxHaul)
+    }
+    
+    int tempSum=0;
+    for(int i=0;i<31;i++)
+    {
+        tempSum=mush1[i]+mush2[i]+mush3[i];
+        if(tempSum>maxHaul)
         {
-            maxHaul=mush1Temp+mush2Temp+mush3Temp;
+            maxHaul=tempSum;
         }
     }
     op.close();
@@ -51,7 +56,7 @@ int MushCount(int days[],int mush1[],int mush2[],int mush3[])
         if(temp>BigHaul)
         {
             BigHaul=temp;
-            SaveDay=i;
+            SaveDay=i+1;
         }
     }
     return SaveDay;
@@ -64,7 +69,7 @@ void fileWrite(int days[],int mush1[],int mush2[],int mush3[],int maxHaul)
     {
         if(days[i]!=0)
         {
-            cl<<days[i]<<' '<<mush1[i]<<' '<<mush2[i]<<' '<<mush3[i]<<'\n'
+            cl<<days[i]<<' '<<mush1[i]<<' '<<mush2[i]<<' '<<mush3[i]<<'\n';
         }
     }
     cl<<MushCount(days,mush1,mush2,mush3)<<' '<<maxHaul;
